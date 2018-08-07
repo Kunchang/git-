@@ -1,0 +1,190 @@
+1、判断设备是否为IOS
+var ios=navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+
+2、判断是否为微信
+function is_wechat(){
+        var ua = navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i)=="micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+}
+
+3、截取通过url传递数据
+function GetQueryString(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+	var r = window.location.search.substr(1).match(reg);
+	if (r!=null){
+	      return unescape(r[2])
+	}; return null;
+}
+var uid = GetQueryString('uid');
+var token = GetQueryString('token');
+
+改进版：
+function GetQueryString(name){
+	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)','i');
+	var r = window.location.search.substr(1).match(reg);
+	if(r != null){
+		return decodeURIComponent(r[2]);
+	}else{
+		return null;
+	}
+}
+var token = GetQueryString('token');
+var uid = GetQueryString('uid');
+
+
+4、通过JS改变手机端HTML根标签的font-size的大小，1rem=40px（以iPhone6为基准）
+var flag=navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
+(function(doc, win){
+    var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function(){
+            var clientWidth = docEl.clientWidth;
+            if(clientWidth >= 750){
+                clientWidth = 750;
+            }
+            if(!clientWidth) return;
+            if (flag) {
+                docEl.style.fontSize = 20 * (clientWidth / 375) + 'px';
+            }else{
+                docEl.style.fontSize=28+'px';
+            }
+        };
+    if(!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+    setInterval(recalc, 500);
+})(document, window);
+
+5、滾動到底部
+$(window).on('scroll',function () {
+				        //$(window).scrollTop()这个方法是当前滚动条滚动的距离
+				        //$(window).height()获取当前窗体的高度
+				        //$(document).height()获取当前文档的高度
+				        //console.log(data.response_data.hasPrivilege);
+				        var bot = 20; //bot是底部距离的高度
+				        if ((bot + $(window).scrollTop()) >= ($(document).height() - $(window).height())) {
+				           //当底部基本距离+滚动的高度〉=文档的高度-窗体的高度时；
+				            //我们需要去异步加载数据了
+				            refresh();
+				        }
+				    });
+
+
+
+6、IOS和安卓获取APP当前版本号
+var ios=navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+var version,versionNum;
+if(ios){
+    version = navigator.userAgent.split(',')[1].split('(')[1];
+    versionNum = parseInt(version.substring(0,version.length-1));
+    if(versionNum < 52){
+        $('#sure').on('click',function(){
+            location.href = 'https://itunes.apple.com/vn/app/sing-now!-karaoke-mien-phi/id1150376734';
+        });
+        $('#pop').show();
+    }
+}else{
+    version = navigator.userAgent.split(';')[0].split('.');
+    versionNum = parseInt(version[version.length-1]);
+    if(versionNum < 360){
+        $('#sure').on('click',function(){
+            location.href = 'https://play.google.com/store/apps/details?id=com.vi.singnow';
+        });
+        $('#pop').show();
+    }
+}
+7、直接打开APP或跳转到官网
+function downLoadApp() {
+        if(ios){
+            var weChatFlag = is_wechat();
+            if(weChatFlag){
+                document.getElementsByClassName('maskBox')[0].style.display = 'block';
+            }else {
+                location.href = 'encore://';
+                setTimeout(function(){
+                    window.location.href = "https://itunes.apple.com/tw/app/huan-ge!/id1172185140";
+                }, 3000);
+            }
+        }else {
+            location.href = 'hsing://17sing.tw/';
+            setTimeout(function(){
+                window.location.href = "http://17sing.tw/";
+            }, 3000);
+        }
+    }
+
+
+
+8、獲取鼠標點擊座標
+$class('#newest .newest')[0].addEventListener('click',function(event){
+	var e = event || window.event;
+	e.preventDefault();
+	//var pageY = e.changedTouches[0].pageY;
+	var pageY = e.pageY;
+	if(pageY==undefined){
+	        //pageY = e.changedTouches[0].clientY+document.body.scrollTop||document.documentElement.scrollTop;
+	        pageY = e.clientY+document.body.scrollTop||document.documentElement.scrollTop;
+	}
+	var row = Math.floor(pageY/85);
+	console.log(row);
+	console.log($class('#newest .newest a')[row-1]);
+},false);
+
+
+9、下拉刷新
+(function(){
+		var scroll = $class('#popular ul')[0]; //页面一加载，先设置默认值，然后再通过点击赋值
+	    var outerScroller = $id('popular');
+	    var touchStart = 0;
+   		var touchDis = 0;
+   		outerScroller.addEventListener('touchstart', function(event) {
+   			event.stopPropagation();
+        	var touch = event.targetTouches[0];
+        	// 把元素放在手指所在的位置
+           	touchStart = touch.pageY;
+           	//console.log(touchStart);
+        }, false);
+   		outerScroller.addEventListener('touchmove', function(event) { 
+   			event.stopPropagation();
+	        var touch = event.targetTouches[0];
+	        //console.log(touch.pageY + 'px');
+	        if(touch.pageY-touchStart > 0){
+	        	if(window.pageYOffset <= 0){
+
+	        	scroll.style.top = scroll.offsetTop + touch.pageY-touchStart + 'px';
+	        	}
+	        	//scroll.style.top = scroll.offsetTop + touch.pageY-touchStart + 'px';
+	        }
+	        //console.log(scroll.style.top);
+	        touchStart = touch.pageY;
+	        touchDis = touch.pageY-touchStart;
+        }, false);
+   		outerScroller.addEventListener('touchend', function(event) { 
+   			event.stopPropagation();
+	        touchStart = 0;
+	        var top = scroll.offsetTop;
+	        //console.log(top);
+	        if(window.pageYOffset <= 0 && top>70){
+	        	$id('loading').style.display = 'block';
+	        	refresh2();
+	        }
+	        if(top>0){
+	            var time = setInterval(function(){
+	              	scroll.style.top = scroll.offsetTop -6+'px';
+	              	if(scroll.offsetTop<=0){
+	              		clearInterval(time);
+	              	}
+	            },1);
+	        }
+    	}, false);
+   		function refresh2(){
+			ajax(popularURL,popularAjaxSuccess);
+			console.log('下拉刷新2');
+   		}
+    })();
+（可通過touchend事件添加一個class名，去做動畫，下拉的距離回到頂部。現回到頂部的動畫過度不好。）
+
