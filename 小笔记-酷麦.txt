@@ -1,7 +1,7 @@
-1¡¢ÅĞ¶ÏÉè±¸ÊÇ·ñÎªIOS
+1ã€åˆ¤æ–­è®¾å¤‡æ˜¯å¦ä¸ºIOS
 var ios=navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
 
-2¡¢ÅĞ¶ÏÊÇ·ñÎªÎ¢ĞÅ
+2ã€åˆ¤æ–­æ˜¯å¦ä¸ºå¾®ä¿¡
 function is_wechat(){
         var ua = navigator.userAgent.toLowerCase();
         if(ua.match(/MicroMessenger/i)=="micromessenger") {
@@ -11,7 +11,7 @@ function is_wechat(){
         }
 }
 
-3¡¢½ØÈ¡Í¨¹ıurl´«µİÊı¾İ
+3ã€æˆªå–é€šè¿‡urlä¼ é€’æ•°æ®
 function GetQueryString(name) {
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
 	var r = window.location.search.substr(1).match(reg);
@@ -22,7 +22,7 @@ function GetQueryString(name) {
 var uid = GetQueryString('uid');
 var token = GetQueryString('token');
 
-¸Ä½ø°æ£º
+æ”¹è¿›ç‰ˆï¼š
 function GetQueryString(name){
 	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)','i');
 	var r = window.location.search.substr(1).match(reg);
@@ -36,7 +36,7 @@ var token = GetQueryString('token');
 var uid = GetQueryString('uid');
 
 
-4¡¢Í¨¹ıJS¸Ä±äÊÖ»ú¶ËHTML¸ù±êÇ©µÄfont-sizeµÄ´óĞ¡£¬1rem=40px£¨ÒÔiPhone6Îª»ù×¼£©
+4ã€é€šè¿‡JSæ”¹å˜æ‰‹æœºç«¯HTMLæ ¹æ ‡ç­¾çš„font-sizeçš„å¤§å°ï¼Œ1rem=40pxï¼ˆä»¥iPhone6ä¸ºåŸºå‡†ï¼‰
 var flag=navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
 (function(doc, win){
     var docEl = doc.documentElement,
@@ -59,23 +59,23 @@ var flag=navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|
     setInterval(recalc, 500);
 })(document, window);
 
-5¡¢L„Óµ½µ×²¿
+5ã€æ»¾å‹•åˆ°åº•éƒ¨
 $(window).on('scroll',function () {
-				        //$(window).scrollTop()Õâ¸ö·½·¨ÊÇµ±Ç°¹ö¶¯Ìõ¹ö¶¯µÄ¾àÀë
-				        //$(window).height()»ñÈ¡µ±Ç°´°ÌåµÄ¸ß¶È
-				        //$(document).height()»ñÈ¡µ±Ç°ÎÄµµµÄ¸ß¶È
+				        //$(window).scrollTop()è¿™ä¸ªæ–¹æ³•æ˜¯å½“å‰æ»šåŠ¨æ¡æ»šåŠ¨çš„è·ç¦»
+				        //$(window).height()è·å–å½“å‰çª—ä½“çš„é«˜åº¦
+				        //$(document).height()è·å–å½“å‰æ–‡æ¡£çš„é«˜åº¦
 				        //console.log(data.response_data.hasPrivilege);
-				        var bot = 20; //botÊÇµ×²¿¾àÀëµÄ¸ß¶È
+				        var bot = 20; //botæ˜¯åº•éƒ¨è·ç¦»çš„é«˜åº¦
 				        if ((bot + $(window).scrollTop()) >= ($(document).height() - $(window).height())) {
-				           //µ±µ×²¿»ù±¾¾àÀë+¹ö¶¯µÄ¸ß¶È¡µ=ÎÄµµµÄ¸ß¶È-´°ÌåµÄ¸ß¶ÈÊ±£»
-				            //ÎÒÃÇĞèÒªÈ¥Òì²½¼ÓÔØÊı¾İÁË
+				           //å½“åº•éƒ¨åŸºæœ¬è·ç¦»+æ»šåŠ¨çš„é«˜åº¦ã€‰=æ–‡æ¡£çš„é«˜åº¦-çª—ä½“çš„é«˜åº¦æ—¶ï¼›
+				            //æˆ‘ä»¬éœ€è¦å»å¼‚æ­¥åŠ è½½æ•°æ®äº†
 				            refresh();
 				        }
 				    });
 
 
 
-6¡¢IOSºÍ°²×¿»ñÈ¡APPµ±Ç°°æ±¾ºÅ
+6ã€IOSå’Œå®‰å“è·å–APPå½“å‰ç‰ˆæœ¬å·
 var ios=navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
 var version,versionNum;
 if(ios){
@@ -97,7 +97,7 @@ if(ios){
         $('#pop').show();
     }
 }
-7¡¢Ö±½Ó´ò¿ªAPP»òÌø×ªµ½¹ÙÍø
+7ã€ç›´æ¥æ‰“å¼€APPæˆ–è·³è½¬åˆ°å®˜ç½‘
 function downLoadApp() {
         if(ios){
             var weChatFlag = is_wechat();
@@ -119,7 +119,7 @@ function downLoadApp() {
 
 
 
-8¡¢«@È¡Êó˜Ëüc“ô×ù˜Ë
+8ã€ç²å–é¼ æ¨™é»æ“Šåº§æ¨™
 $class('#newest .newest')[0].addEventListener('click',function(event){
 	var e = event || window.event;
 	e.preventDefault();
@@ -135,16 +135,16 @@ $class('#newest .newest')[0].addEventListener('click',function(event){
 },false);
 
 
-9¡¢ÏÂÀ­Ë¢ĞÂ
+9ã€ä¸‹æ‹‰åˆ·æ–°
 (function(){
-		var scroll = $class('#popular ul')[0]; //Ò³ÃæÒ»¼ÓÔØ£¬ÏÈÉèÖÃÄ¬ÈÏÖµ£¬È»ºóÔÙÍ¨¹ıµã»÷¸³Öµ
+		var scroll = $class('#popular ul')[0]; //é¡µé¢ä¸€åŠ è½½ï¼Œå…ˆè®¾ç½®é»˜è®¤å€¼ï¼Œç„¶åå†é€šè¿‡ç‚¹å‡»èµ‹å€¼
 	    var outerScroller = $id('popular');
 	    var touchStart = 0;
    		var touchDis = 0;
    		outerScroller.addEventListener('touchstart', function(event) {
    			event.stopPropagation();
         	var touch = event.targetTouches[0];
-        	// °ÑÔªËØ·ÅÔÚÊÖÖ¸ËùÔÚµÄÎ»ÖÃ
+        	// æŠŠå…ƒç´ æ”¾åœ¨æ‰‹æŒ‡æ‰€åœ¨çš„ä½ç½®
            	touchStart = touch.pageY;
            	//console.log(touchStart);
         }, false);
@@ -183,8 +183,8 @@ $class('#newest .newest')[0].addEventListener('click',function(event){
     	}, false);
    		function refresh2(){
 			ajax(popularURL,popularAjaxSuccess);
-			console.log('ÏÂÀ­Ë¢ĞÂ2');
+			console.log('ä¸‹æ‹‰åˆ·æ–°2');
    		}
     })();
-£¨¿ÉÍ¨ß^touchendÊÂ¼şÌí¼ÓÒ»‚€classÃû£¬È¥×ö„Ó®‹£¬ÏÂÀ­µÄ¾àëx»Øµ½í”²¿¡£¬F»Øµ½í”²¿µÄ„Ó®‹ß^¶È²»ºÃ¡££©
+ï¼ˆå¯é€šétouchendäº‹ä»¶æ·»åŠ ä¸€å€‹classåï¼Œå»åšå‹•ç•«ï¼Œä¸‹æ‹‰çš„è·é›¢å›åˆ°é ‚éƒ¨ã€‚ç¾å›åˆ°é ‚éƒ¨çš„å‹•ç•«éåº¦ä¸å¥½ã€‚ï¼‰
 
