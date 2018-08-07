@@ -1,6 +1,11 @@
-git log //查看日志
-git diff HEAD -- git.txt //查看修改后，两者的不同
-git reflog //查看commit_id，为git reset --hard commit_id提供
-git reset --hard commit_id //回退到commit_id版本
 cat git.txt //查看文件内容
+git log //查看日志
+git add <file> //从工作区提交文件到暂存区
+git commit -m '提交说明' //从暂存区提交到仓库
+git diff HEAD -- git.txt //查看修改后，两者的不同
 git status //查看状态（修改，提交）
+git reflog //查看commit_id，为git reset --hard commit_id提供
+git checkout -- <file> //从工作区撤回
+git reset HEAD <file>  //从暂存区撤回
+git reset --hard commit_id //回退到commit_id版本，前提是没有推送到远程库。
+git rm <file> //从仓库删除文件
