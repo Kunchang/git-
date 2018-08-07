@@ -9,3 +9,7 @@ git checkout -- <file> //从工作区撤回
 git reset HEAD <file>  //从暂存区撤回
 git reset --hard commit_id //回退到commit_id版本，前提是没有推送到远程库。
 git rm <file> //从仓库删除文件
+
+git remote add origin git@server-name:path/repo-name.git； //要关联一个远程库
+git push -u origin master //关联后，第一次推送master分支的所有内容；
+git push origin master //此后，每次本地提交后，只要有必要，就可以使用命令推送最新修改；
